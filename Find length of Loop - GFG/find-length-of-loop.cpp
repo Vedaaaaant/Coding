@@ -72,7 +72,7 @@ int countNodesinLoop(struct Node *head)
        }
    }
    
-    if(fast == NULL || fast->next == NULL)
+    if(slow!=fast)
         return 0;
         
    int count = 1 ;
