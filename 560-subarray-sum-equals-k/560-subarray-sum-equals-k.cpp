@@ -4,10 +4,12 @@ public:
     {
         int ans=0,sum=0;
         unordered_map<int,int>m;
-        for(int i=0;i<nums.size();i++){
-            m[sum]++;
+        m[sum] = 1;
+        for(int i=0;i<nums.size();i++)
+        {
             sum+=nums[i];
             if(m.find(sum-k)!=m.end()) ans+=m[sum-k];
+             m[sum]++;
         }
         return ans;    
     }
