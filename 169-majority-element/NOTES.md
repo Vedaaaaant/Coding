@@ -1,0 +1,1 @@
+Moore Vooting Algorithm
