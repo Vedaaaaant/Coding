@@ -11,16 +11,17 @@
  */
 class Solution {
 public:
-    TreeNode* helper(vector<int>& A , int& i , int bound)
+    TreeNode* help(vector<int>& A ,int& i, int bound)
     {
-        if(i==A.size() || A[i] > bound) return NULL;
-        TreeNode* root = new TreeNode(A[i++]);
-        root->left = helper(A,i,root->val);
-        root->right = helper(A,i,bound);
-        return root;
+      if(i==A.size() || A[i]>bound) return NULL;
+      TreeNode* root = new TreeNode(A[i++]);
+      root->left = help(A,i,root->val);
+      root->right = help(A,i,bound);
+      return root;
     }
-    TreeNode* bstFromPreorder(vector<int>& A) {
-        int i = 0 ;
-        return helper(A,i,INT_MAX);
+    TreeNode* bstFromPreorder(vector<int>& A)
+    {
+      int i = 0 ;
+      return help(A,i,INT_MAX);    
     }
 };
