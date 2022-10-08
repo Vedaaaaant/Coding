@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int> nextSmallerElement(vector<int>& arr , int n)
+   vector<int> nextSmallerElement(vector<int>& arr , int n)
     {
         vector<int> ans;
         stack<int> s ;
