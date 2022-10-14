@@ -10,8 +10,9 @@
  */
 class Solution {
 public:
-    ListNode* deleteMiddle(ListNode* head) {
-        ListNode* slow = head;
+    ListNode* deleteMiddle(ListNode* head) 
+    {
+      ListNode* slow = head;
         ListNode* fast = head;
         ListNode* prev = head;
         if(head==NULL){
