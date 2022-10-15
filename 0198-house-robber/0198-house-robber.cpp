@@ -4,21 +4,20 @@ public:
   int help(vector<int>& nums)
   {
     int n = nums.size();
-    int prev  = nums[0] ;
-    int prev2 = 0 ;
-    for(int i = 1 ; i < n ; i++)
+    vector<int> dp(n,0);
+    dp[0] = nums[0];
+    for(int i = 1 ; i <n ; i++)
     {
-        int take , notake ;
-        take = nums[i] ;
-        if(i>1){
-            take += prev2;
-        }
-        notake = 0 + prev;
-        int curi  = max(take,notake);
-        prev2 = prev;
-        prev = curi;
+      int notpick = 0 + dp[i-1];
+      int pick = nums[i];
+      if(i>1)
+      {
+        pick += dp[i-2];
+      }
+      
+      dp[i] = max(pick,notpick);
     }
-    return prev;
+    return dp[n-1];
   }
   int rob(vector<int>& nums)
   {
