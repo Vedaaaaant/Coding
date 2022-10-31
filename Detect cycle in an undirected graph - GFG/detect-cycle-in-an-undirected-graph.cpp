@@ -6,45 +6,38 @@ using namespace std;
 class Solution {
   public:
     // Function to detect cycle in an undirected graph.
-    bool detect(int source , int vis[] , vector<int> adj[])
+    bool dfs(int node , int parent , int vis[] , vector<int> adj[])
     {
-        queue<pair<int,int>> q;
-        vis[source] = 1 ;
-        q.push({source,-1});
-        while(!q.empty())
+        vis[node] = 1 ;
+        for(auto adjacentnode : adj[node])
         {
-            int node = q.front().first;
-            int parent = q.front().second;
-            q.pop();
-            for(auto adjacentnode : adj[node])
+            if(!vis[adjacentnode])
             {
-               if(!vis[adjacentnode])
-               {
-                   vis[adjacentnode] = 1 ;
-                   q.push({adjacentnode,node});
-               }
-               else if(parent != adjacentnode)
-               {
-                   return true;
-               }
-            }
-        }
-        return false;
-    }
-    bool isCycle(int V, vector<int> adj[]) 
-    {
-        int vis[V] = {0};
-        for(int i = 0 ; i < V ; i++)
-        {
-            if(!vis[i])
-            {
-                if(detect(i,vis,adj))
+                if(dfs(adjacentnode,node,vis,adj)==true)
                 {
                     return true;
                 }
             }
+            else if(adjacentnode != parent){
+                    return true;
+                }
         }
         return false;
+    }
+    bool isCycle(int V, vector<int> adj[])
+    {
+       int vis[V] = {0};
+       for(int i = 0 ; i < V ; i++)
+       {
+           if(!vis[i])
+           {
+               if(dfs(i,-1,vis,adj)==true)
+              {
+                 return true;
+              }
+           }
+       }
+       return false;
     }
 };
 
